@@ -1,25 +1,20 @@
-// Advanced gallery with pagination for more than 6 images
+// Advanced gallery without pagination
 const images = [
-  { src: 'img/Schlafzimmer 1.jpeg', alt: 'Schlafzimmer' },
-  { src: 'images/apartment2.jpg', alt: 'Cool' },
-  { src: 'images/apartment3.jpg', alt: 'Küche' },
-  { src: 'images/apartment4.jpg', alt: 'Balkon' },
-  { src: 'images/apartment5.jpg', alt: 'Badezimmer' },
-  { src: 'images/apartment6.jpg', alt: 'Essbereich' },
-  { src: 'images/apartment7.jpg', alt: 'Garten' },
-  { src: 'images/apartment8.jpg', alt: 'Aussicht' }
+  { src: 'img/Wohnzimmer 1.jpeg', alt: 'Schlafzimmer' },
+  { src: 'img/Wohnzimmer 2.jpeg', alt: 'Wohnzimmer' },
+  { src: 'img/Eingang 1.jpeg', alt: 'Küche' },
+  { src: 'img/Küche 1.jpeg', alt: 'Balkon' },
+  { src: 'img/Bad 1.jpeg', alt: 'Badezimmer' },
+  { src: 'img/Schlafzimmer 2.jpeg', alt: 'Essbereich' },
+  { src: 'img/Schlafzimmer 3.jpeg', alt: 'Garten' },
+  { src: 'img/Garten 1.jpeg', alt: 'Aussicht' }
 ];
 
-const imagesPerPage = 4;
-let currentPage = 1;
-
-function renderGallery(page = 1) {
+function renderGallery() {
   const gallery = document.querySelector('.gallery');
   if (!gallery) return;
   gallery.innerHTML = '';
-  const start = (page - 1) * imagesPerPage;
-  const end = start + imagesPerPage;
-  images.slice(start, end).forEach(img => {
+  images.forEach(img => {
     const el = document.createElement('img');
     el.src = img.src;
     el.alt = img.alt;
@@ -28,30 +23,6 @@ function renderGallery(page = 1) {
     el.addEventListener('click', () => showModal(img.src, img.alt));
     gallery.appendChild(el);
   });
-  renderPagination(page);
-}
-
-function renderPagination(page) {
-  let pagination = document.querySelector('.gallery-pagination');
-  if (!pagination) {
-    pagination = document.createElement('div');
-    pagination.className = 'gallery-pagination';
-    document.querySelector('.gallery-section').appendChild(pagination);
-  }
-  pagination.innerHTML = '';
-  const totalPages = Math.ceil(images.length / imagesPerPage);
-  for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button');
-    btn.textContent = i;
-    btn.className = i === page ? 'active' : '';
-    btn.setAttribute('aria-label', `Seite ${i}`);
-    btn.onclick = () => {
-      currentPage = i;
-      renderGallery(i);
-    };
-    pagination.appendChild(btn);
-  }
-  pagination.style.display = totalPages > 1 ? 'flex' : 'none';
 }
 
 function showModal(src, alt) {
@@ -80,7 +51,7 @@ function showModal(src, alt) {
 // Smooth scrolling für Navigation
 document.addEventListener('DOMContentLoaded', () => {
   // Galerie laden
-  renderGallery(currentPage);
+  renderGallery();
   
   // Smooth scrolling für die Navigation
   document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {

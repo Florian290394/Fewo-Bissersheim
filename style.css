@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
-  --primary: #358fa5;
+  --primary: #28a6aa;
   --secondary: #F8FAFC;
   --accent: #F7B32B;
   --text: #23272F;
@@ -298,8 +298,8 @@ footer a:hover {
 }
 
 .host-image {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   border-radius: 40%;
   object-fit: cover;
   margin-bottom: 0.8rem;
