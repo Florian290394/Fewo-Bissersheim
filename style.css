@@ -444,3 +444,11 @@ footer a:hover {
 .legal-main a:hover {
   color: var(--accent);
 }
+
+/* Klasse für rot markierte Tage */
+.calendar .highlight-red {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem;
+}
