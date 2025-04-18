@@ -9,14 +9,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script defer src="script.js"></script>
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 </head>
 <body>
   <header>
     <div class="logo">FeWo Kleine Toskana</div>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
     <nav id="main-nav">
       <ul>
         <li><a href="#gallery">Galerie</a></li>
         <li><a href="#about">Über uns</a></li>
+        <li><a href="#calendar">Kalender</a></li>
         <li><a href="#contact">Kontakt</a></li>
       </ul>
     </nav>
@@ -56,10 +63,17 @@
         </div>
       </div>
     </section>
-    <section id="contact" class="contact-section">
-      <div class="calendar" style="width: 400px; height: 300px;">
-        <iframe src="https://calendar.google.com/calendar/embed?src=de.german%23holiday%40group.v.calendar.google.com&ctz=Europe%2FBerlin" style="border: 0; width: 100%; height: 100%;" frameborder="0" scrolling="no"></iframe>
+    <section id="calendar" class="calendar-section">
+      <h2>Kalender</h2>
+      <div class="calendar" id="booking-calendar" style="max-width: 400px; margin: 0 auto 1rem auto;"></div>
+      <div class="calendar-legend">
+        <div class="legend-item">
+          <span class="legend-color-box" style="background-color: var(--accent); opacity: 0.7;"></span>
+          <span>Belegt</span>
+        </div>
       </div>
+    </section>
+    <section id="contact" class="contact-section">
       <h2>Kontakt</h2>
       <div class="contact-info">
         <div class="contact-card">
@@ -71,7 +85,7 @@
           </div>
           <div class="contact-detail">
             <h4>E-Mail</h4>
-            <a href="mailto:info@flo-apartment.com">fewo-bissersheim@gmx.de</a>
+            <a href="mailto:fewo-bissersheim@gmx.de">fewo-bissersheim@gmx.de</a>
           </div>
         </div>
         <div class="contact-card">
@@ -129,7 +143,7 @@
     </section>
   </main>
   <footer>
-    <p>&copy; 2025 Flos Ferienwohnung. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+    <p>&copy; 2025 FeWo Bissersheim. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
   </footer>
 </body>
 </html>

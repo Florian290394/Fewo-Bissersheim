@@ -64,6 +64,8 @@ nav ul {
   gap: 2rem;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  width: 100%;
 }
 
 nav a {
@@ -119,6 +121,7 @@ section {
 .gallery-section h2,
 .about-section h2,
 .contact-section h2,
+.calendar-section h2,
 .faq-section h2 {
   font-size: 2rem;
   color: var(--primary);
@@ -235,31 +238,139 @@ footer a:hover {
   color: var(--primary);
 }
 
-/* Responsives Design */
-@media (max-width: 900px) {
-  .card-row {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Mobile Navigation Styles */
+.nav-toggle {
+  display: none;
+  position: absolute;
+  right: 2rem;
+  top: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: none;
+  z-index: 200;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 2rem;
+  height: 0.23rem;
+  margin: 0.3rem 0;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+@media (max-width: 700px) {
   nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.98);
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem 2rem;
+    border-radius: 0;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+    z-index: 150;
+  }
+  nav.open {
+    transform: translateX(0);
+    box-shadow: 0 0 32px rgba(58,90,152,0.13);
+  }
+  .nav-toggle {
+    display: flex;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 2.2rem;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+  nav a {
+    font-size: 1.2rem;
+    padding: 0.7rem 0.5rem;
+    width: 100%;
+    border-radius: 0.7rem;
+  }
+  body.nav-open {
+    overflow: hidden;
   }
 }
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .section-title {
-    font-size: 1.3rem;
+
+/* Hamburger Animation */
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Galerie mobile optimieren */
+@media (max-width: 700px) {
+  .gallery {
+    gap: 0.7rem;
+    padding-bottom: 0.5rem;
   }
   .gallery-img {
-    flex-basis: 180px;
-    height: 120px;
+    flex: 0 0 90vw;
+    height: 38vw;
+    min-height: 160px;
+    max-width: 95vw;
+    border-radius: 1rem;
   }
-  .card {
-    padding: 1.2rem 0.7rem;
+}
+
+@media (max-width: 500px) {
+  .gallery-img {
+    min-height: 120px;
+    height: 32vw;
+  }
+}
+
+/* Allgemeine mobile Layout-Optimierungen */
+@media (max-width: 700px) {
+  main {
+    padding: 0 0.3rem;
+  }
+  .about-content {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .about-hosts {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 320px;
+  }
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .contact-card {
+    max-width: 100%;
+  }
+  .faq-section {
+    margin: 2rem 0.2rem;
+    max-width: 100%;
+  }
+  .faq-list details {
+    padding: 0.7rem 0.7rem;
+  }
+  .contact-map {
+    padding: 0.5rem;
   }
 }
 
@@ -451,4 +562,133 @@ footer a:hover {
   color: white;
   border-radius: 50%;
   padding: 0.2rem;
+}
+
+.img-modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--muted);
+  border: none;
+  color: var(--primary);
+  font-size: 2.2rem;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(58,90,152,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.img-modal-arrow-left {
+  left: -3.5rem; /* Weiter nach links verschoben (war -2.5rem) */
+}
+.img-modal-arrow-right {
+  right: -3.5rem; /* Weiter nach rechts verschoben (war -2.5rem) */
+}
+.img-modal-arrow:hover {
+  background: var(--accent);
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .img-modal-arrow-left { left: 0.2rem; }
+  .img-modal-arrow-right { right: 0.2rem; }
+}
+
+/* FullCalendar Custom Styling */
+#booking-calendar {
+  --fc-border-color: var(--muted);
+  --fc-daygrid-event-dot-width: 8px;
+  --fc-list-event-dot-width: 10px;
+  --fc-event-border-color: transparent;
+  --fc-event-text-color: var(--text);
+  --fc-event-selected-overlay-color: rgba(40, 166, 170, 0.15);
+  font-family: 'Montserrat', sans-serif;
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 16px rgba(58,90,152,0.07);
+}
+
+#booking-calendar .fc-toolbar-title {
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+#booking-calendar .fc-button {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+#booking-calendar .fc-button:hover {
+  background: var(--accent);
+}
+
+/* Abstand zwischen den Navigations-Buttons im Kalender */
+#booking-calendar .fc-prev-button {
+  margin-right: 0.5rem; /* Abstand rechts vom Zurück-Button */
+}
+
+#booking-calendar .fc-button:disabled {
+  background: var(--muted);
+  color: #aaa;
+}
+
+#booking-calendar .fc-daygrid-day {
+  border-color: var(--muted);
+}
+
+#booking-calendar .fc-daygrid-day-number {
+  padding: 0.4em;
+  color: var(--text);
+}
+
+#booking-calendar .fc-day-today {
+  background-color: rgba(247, 179, 43, 0.1); /* Light accent background for today */
+}
+
+#booking-calendar .fc-daygrid-day.fc-day-past .fc-daygrid-day-number {
+    color: #bbb; /* Make past days greyed out */
+}
+
+/* Styling for background events (booked days) */
+#booking-calendar .fc-bg-event {
+  background-color: var(--accent) !important; /* Use accent color for booked days */
+  opacity: 0.7; /* Make it slightly transparent */
+}
+
+#booking-calendar .fc-event-title {
+    display: none; /* Hide the default "Belegt" text */
+}
+
+/* Optional: Add a small legend */
+.calendar-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.legend-color-box {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 3px;
 }

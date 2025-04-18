@@ -26,16 +26,33 @@ function renderGallery() {
 }
 
 function showModal(src, alt) {
+  let currentIndex = images.findIndex(img => img.src === src);
   let modal = document.createElement('div');
-  modal.className = 'img-modal';
+  modal.className = 'img-modal'; // <-- Klasse war wieder weg
+  function updateModal(index) {
+    const img = images[index];
+    modal.querySelector('.img-modal-img').src = img.src;
+    modal.querySelector('.img-modal-img').alt = img.alt;
+  }
   modal.innerHTML = `
     <div class="img-modal-content">
-      <img src="${src}" alt="${alt}">
+      <button class="img-modal-arrow img-modal-arrow-left" title="Vorheriges Bild">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.5 21L10.5 14L17.5 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <img src="${src}" alt="${alt}" class="img-modal-img">
+      <button class="img-modal-arrow img-modal-arrow-right" title="Nächstes Bild">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.5 7L17.5 14L10.5 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
       <span class="img-modal-close" title="Schließen">&times;</span>
     </div>
   `;
   document.body.appendChild(modal);
   document.body.style.overflow = 'hidden';
+  // Close
   modal.querySelector('.img-modal-close').onclick = () => {
     modal.remove();
     document.body.style.overflow = '';
@@ -46,44 +63,120 @@ function showModal(src, alt) {
       document.body.style.overflow = '';
     }
   };
+  // Navigation
+  modal.querySelector('.img-modal-arrow-left').onclick = (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateModal(currentIndex);
+  };
+  modal.querySelector('.img-modal-arrow-right').onclick = (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % images.length;
+    updateModal(currentIndex);
+  };
+  // Keyboard navigation
+  modal.tabIndex = -1;
+  modal.focus();
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateModal(currentIndex);
+    } else if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateModal(currentIndex);
+    } else if (e.key === 'Escape') {
+      modal.remove();
+      document.body.style.overflow = '';
+    }
+  });
 }
 
-// Smooth scrolling für Navigation
+// FullCalendar: Belegte Zeiträume einfach als Objekte im Array pflegen!
+const bookingEvents = [
+  // Einzelne Tage
+  { title: 'Belegt', start: '2025-04-20', end: '2025-04-21', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2025-04-20', end: '2025-04-21', display: 'background', color: '#e74c3c' },
+];
+
+function renderBookingCalendar() {
+  const calendarEl = document.getElementById('booking-calendar');
+  if (!calendarEl) return;
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'de',
+    height: 350,
+    buttonText: {
+      today: 'Heute'
+    },
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: ''
+    },
+    events: bookingEvents,
+    eventDisplay: 'background',
+    selectable: false,
+    editable: false,
+    dayMaxEvents: true,
+    fixedWeekCount: false,
+    firstDay: 1,
+    eventColor: '#e74c3c',
+    eventBackgroundColor: '#e74c3c',
+    eventBorderColor: '#e74c3c',
+    eventTextColor: '#fff',
+    dayCellClassNames: function(arg) {
+      // Optionale Anpassung für belegte Tage
+      return '';
+    }
+  });
+  calendar.render();
+}
+
+function setupMobileNav() {
+  const nav = document.getElementById('main-nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  if (!nav || !navToggle) return;
+
+  navToggle.addEventListener('click', function() {
+    const isOpen = nav.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Schließe Menü beim Klick auf Link (nur mobil)
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 700) {
+        nav.classList.remove('open');
+        navToggle.classList.remove('open');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+}
+
+// Nur einen einzigen DOMContentLoaded-Handler verwenden!
 document.addEventListener('DOMContentLoaded', () => {
-  // Galerie laden
   renderGallery();
-  
+  renderBookingCalendar();
+  setupMobileNav();
   // Smooth scrolling für die Navigation
   document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      
       const targetId = this.getAttribute('href');
       const targetElement = document.querySelector(targetId);
-      
       if (!targetElement) return;
-      
-      // Scroll-Position berechnen (mit Offset für die Navigation)
       const navHeight = document.querySelector('nav').offsetHeight;
       const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-      
-      // Sanftes Scrolling
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-      
-      // URL aktualisieren
-      history.pushState(null, null, targetId);
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      // Kein history.pushState mehr, damit kein Hash in der URL steht
     });
   });
-  
-  // Aktiven Navigationslink markieren beim Scrollen
   window.addEventListener('scroll', highlightNav);
-  
-  // Initial markieren
   highlightNav();
-  
   // Scroll-nach-oben-Button anzeigen/ausblenden
   const scrollButton = document.createElement('button');
   scrollButton.className = 'scroll-top-button';
@@ -94,13 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   scrollButton.title = "Nach oben scrollen";
   scrollButton.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   document.body.appendChild(scrollButton);
-  
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > 300) {
       scrollButton.classList.add('visible');
@@ -108,6 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollButton.classList.remove('visible');
     }
   });
+  // Optional: Tage hervorheben (falls benötigt)
+  // highlightDays(['2023-12-25', '2023-12-31']);
 });
 
 // Funktion, um aktiven Navigationslink zu markieren
@@ -160,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
   highlightDays(datesToHighlight);
 });
 
-// Modal styles
+// Modal styles (wiederhergestellt)
 const style = document.createElement('style');
 style.innerHTML = `
 .img-modal {
