@@ -9,7 +9,12 @@ const images = [
   { src: 'img/Schlafzimmer 3.jpeg', alt: 'Garten' },
   { src: 'img/Garten 1.jpeg', alt: 'Aussicht' }
 ];
-
+// FullCalendar: Belegte Zeiträume einfach als Objekte im Array pflegen!
+const bookingEvents = [
+  // Einzelne Tage
+  { title: 'Belegt', start: '2025-07-28', end: '2025-08-04', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2025-08-13', end: '2025-08-18', display: 'background', color: '#e74c3c' },
+];
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
   if (!gallery) return;
@@ -91,12 +96,7 @@ function showModal(src, alt) {
   });
 }
 
-// FullCalendar: Belegte Zeiträume einfach als Objekte im Array pflegen!
-const bookingEvents = [
-  // Einzelne Tage
-  { title: 'Belegt', start: '2025-04-20', end: '2025-04-21', display: 'background', color: '#e74c3c' },
-  { title: 'Belegt', start: '2025-04-20', end: '2025-04-21', display: 'background', color: '#e74c3c' },
-];
+
 
 function renderBookingCalendar() {
   const calendarEl = document.getElementById('booking-calendar');
