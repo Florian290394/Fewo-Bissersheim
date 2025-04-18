@@ -197,8 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollButton.classList.remove('visible');
     }
   });
-  // Optional: Tage hervorheben (falls benötigt)
-  // highlightDays(['2023-12-25', '2023-12-31']);
 });
 
 // Funktion, um aktiven Navigationslink zu markieren
@@ -231,25 +229,6 @@ function highlightNav() {
     if (activeLink) activeLink.classList.add('active');
   }
 }
-
-// Funktion, um bestimmte Tage rot zu markieren
-function highlightDays(dates) {
-  const calendar = document.querySelector('.calendar');
-  if (!calendar) return;
-
-  dates.forEach(date => {
-    const dayElement = calendar.querySelector(`[data-date="${date}"]`);
-    if (dayElement) {
-      dayElement.classList.add('highlight-red');
-    }
-  });
-}
-
-// Beispiel: Markiere bestimmte Tage
-const datesToHighlight = ['2023-12-25', '2023-12-31'];
-document.addEventListener('DOMContentLoaded', () => {
-  highlightDays(datesToHighlight);
-});
 
 // Modal styles (wiederhergestellt)
 const style = document.createElement('style');
