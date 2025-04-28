@@ -387,6 +387,7 @@ footer a:hover {
 
 .about-text {
   flex: 2 1 300px;
+  text-align: center;
 }
 
 .about-hosts {
@@ -426,7 +427,8 @@ footer a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  justify-content: center;
+  justify-content: center; /* Zentriert die Registerkarten */
+  align-items: center; /* Vertikale Zentrierung */
 }
 
 .contact-card {
@@ -494,6 +496,12 @@ footer a:hover {
 .faq-section {
   margin: 3rem auto;
   max-width: 800px;
+  text-align: center;
+}
+
+.faq-list {
+  display: inline-block;
+  text-align: left;
 }
 
 .faq-list details {

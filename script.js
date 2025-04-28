@@ -197,6 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollButton.classList.remove('visible');
     }
   });
+
+  // Adjust list style position
+  const ulElements = document.querySelectorAll('ul');
+  ulElements.forEach(ul => {
+    ul.style.listStylePosition = 'inside';
+  });
 });
 
 // Funktion, um aktiven Navigationslink zu markieren
