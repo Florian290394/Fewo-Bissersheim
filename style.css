@@ -111,6 +111,11 @@ nav a:hover, nav a.active {
   display: block;
 }
 
+.hero-keywords {
+  color: #fff;
+  display: none;
+}
+
 main {
   max-width: 1100px;
   margin: 0 auto 0 auto;
