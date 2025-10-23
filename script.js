@@ -19,6 +19,8 @@ const bookingEvents = [
   { title: 'Belegt', start: '2026-05-01', end: '2026-05-04', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-05-22', end: '2026-05-27', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2025-12-06', end: '2025-12-08', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-04-29', end: '2026-05-02', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-06-019', end: '2026-06-22', display: 'background', color: '#e74c3c' },
 ];
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
