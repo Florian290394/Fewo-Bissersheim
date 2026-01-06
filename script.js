@@ -1,7 +1,7 @@
 // Advanced gallery without pagination
 const images = [
-  { src: 'img/Wohnzimmer 1.jpeg', alt: 'Schlafzimmer' },
-  { src: 'img/Wohnzimmer 2.jpeg', alt: 'Wohnzimmer' },
+  { src: 'img/Wohnzimmer 1 neu.jpeg', alt: 'Schlafzimmer' },
+  { src: 'img/Wohnzimmer 2 neu.jpeg', alt: 'Wohnzimmer' },
   { src: 'img/Eingang 1.jpeg', alt: 'Küche' },
   { src: 'img/Küche 1.jpeg', alt: 'Balkon' },
   { src: 'img/Bad 1.jpeg', alt: 'Badezimmer' },
