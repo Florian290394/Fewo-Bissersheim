@@ -30,6 +30,9 @@ const bookingEvents = [
   { title: 'Belegt', start: '2026-10-24', end: '2026-10-30', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-06-10', end: '2026-06-15', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-08-28', end: '2026-08-31', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-06-04', end: '2026-06-08', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-05-08', end: '2026-05-11', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-09-02', end: '2026-09-05', display: 'background', color: '#e74c3c' },
 ];
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
