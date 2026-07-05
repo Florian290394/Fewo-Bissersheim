@@ -21,18 +21,23 @@ const bookingEvents = [
   { title: 'Belegt', start: '2026-05-22', end: '2026-05-27', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-04-29', end: '2026-05-02', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-06-19', end: '2026-06-22', display: 'background', color: '#e74c3c' },
-  { title: 'Belegt', start: '2026-07-30', end: '2026-08-03', display: 'background', color: '#e74c3c' },
-  { title: 'Belegt', start: '2026-08-06', end: '2026-08-10', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-07-30', end: '2026-08-03', display: 'background', color: '#e74c3c' }, // 3E, 1H Rauser
+  { title: 'Belegt', start: '2026-08-06', end: '2026-08-10', display: 'background', color: '#e74c3c' }, // 2E, 1K Bauer
   { title: 'Belegt', start: '2026-07-23', end: '2026-07-29', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-03-06', end: '2026-03-09', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-05-16', end: '2026-05-18', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-05-28', end: '2026-06-01', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-10-24', end: '2026-10-30', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-06-10', end: '2026-06-15', display: 'background', color: '#e74c3c' },
-  { title: 'Belegt', start: '2026-08-28', end: '2026-08-31', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-08-28', end: '2026-08-31', display: 'background', color: '#e74c3c' }, // 3E Suthoff
   { title: 'Belegt', start: '2027-06-04', end: '2027-06-08', display: 'background', color: '#e74c3c' },
   { title: 'Belegt', start: '2026-05-08', end: '2026-05-11', display: 'background', color: '#e74c3c' },
-  { title: 'Belegt', start: '2026-09-02', end: '2026-09-05', display: 'background', color: '#e74c3c' },
+  { title: 'Belegt', start: '2026-09-02', end: '2026-09-05', display: 'background', color: '#e74c3c' }, // 3E Brungs
+  { title: 'Belegt', start: '2026-09-26', end: '2026-10-03', display: 'background', color: '#e74c3c' }, // 2E Löwer
+  { title: 'Belegt', start: '2026-10-03', end: '2026-10-13', display: 'background', color: '#e74c3c' }, // 2E, 1H Roth
+  { title: 'Belegt', start: '2026-10-16', end: '2026-10-23', display: 'background', color: '#e74c3c' }, // 2E Stern
+  { title: 'Belegt', start: '2026-10-24', end: '2026-10-30', display: 'background', color: '#e74c3c' }, // 2E Fechner
+
 ];
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
