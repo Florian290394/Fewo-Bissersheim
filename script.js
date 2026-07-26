@@ -38,6 +38,10 @@ const bookingEvents = [
   { title: 'Belegt', start: '2026-10-16', end: '2026-10-23', display: 'background', color: '#e74c3c' }, // 2E Stern
   { title: 'Belegt', start: '2026-10-24', end: '2026-10-30', display: 'background', color: '#e74c3c' }, // 2E Fechner
 
+  //2027
+  { title: 'Belegt', start: '2027-04-30', end: '2027-05-02', display: 'background', color: '#e74c3c' }, // 3E Fischer
+  { title: 'Belegt', start: '2027-06-04', end: '2027-06-08', display: 'background', color: '#e74c3c' }, // 2E Pich
+  { title: 'Belegt', start: '2027-08-11', end: '2027-08-16', display: 'background', color: '#e74c3c' }, // 2E Markou
 ];
 function renderGallery() {
   const gallery = document.querySelector('.gallery');
