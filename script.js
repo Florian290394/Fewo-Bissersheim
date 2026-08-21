@@ -39,6 +39,7 @@ const bookingEvents = [
 
   //2027
   { title: 'Belegt', start: '2027-04-30', end: '2027-05-03', display: 'background', color: '#e74c3c' }, // 3E Fischer
+  { title: 'Belegt', start: '2027-05-27', end: '2027-05-31', display: 'background', color: '#e74c3c' }, // 2E, 1K Helmond
   { title: 'Belegt', start: '2027-06-04', end: '2027-06-08', display: 'background', color: '#e74c3c' }, // 2E Pich
   { title: 'Belegt', start: '2027-08-11', end: '2027-08-16', display: 'background', color: '#e74c3c' }, // 2E Markou
 ];
