@@ -38,7 +38,10 @@ const bookingEvents = [
   { title: 'Belegt', start: '2026-10-24', end: '2026-10-30', display: 'background', color: '#e74c3c' }, // 2E Fechner
 
   //2027
+  { title: 'Belegt', start: '2027-04-16', end: '2027-04-19', display: 'background', color: '#e74c3c' }, // 3E, 1H Marquardt
+  { title: 'Belegt', start: '2027-04-23', end: '2027-04-26', display: 'background', color: '#e74c3c' }, // 1-3E Sthal
   { title: 'Belegt', start: '2027-04-30', end: '2027-05-03', display: 'background', color: '#e74c3c' }, // 3E Fischer
+  { title: 'Belegt', start: '2027-05-06', end: '2027-05-27', display: 'background', color: '#e74c3c' }, // Urlaub
   { title: 'Belegt', start: '2027-05-27', end: '2027-05-31', display: 'background', color: '#e74c3c' }, // 2E, 1K Helmond
   { title: 'Belegt', start: '2027-06-04', end: '2027-06-08', display: 'background', color: '#e74c3c' }, // 2E Pich
   { title: 'Belegt', start: '2027-08-11', end: '2027-08-16', display: 'background', color: '#e74c3c' }, // 2E Markou
