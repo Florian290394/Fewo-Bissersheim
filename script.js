@@ -44,6 +44,7 @@ const bookingEvents = [
   { title: 'Belegt', start: '2027-05-06', end: '2027-05-27', display: 'background', color: '#e74c3c' }, // Urlaub
   { title: 'Belegt', start: '2027-05-27', end: '2027-05-31', display: 'background', color: '#e74c3c' }, // 2E, 1K Helmond
   { title: 'Belegt', start: '2027-06-04', end: '2027-06-08', display: 'background', color: '#e74c3c' }, // 2E Pich
+  { title: 'Belegt', start: '2027-06-10', end: '2027-06-13', display: 'background', color: '#e74c3c' }, // 2E Tim
   { title: 'Belegt', start: '2027-08-11', end: '2027-08-16', display: 'background', color: '#e74c3c' }, // 2E Markou
 ];
 function renderGallery() {
